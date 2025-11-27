@@ -1,0 +1,285 @@
+Create a complete, fully integrated application called AURA (Autonomous Unified Response Assistant). AURA must be a single cohesive app—mobile-first (Android & iOS) with an optional web interface—designed to protect, empower, educate, and support African women and girls against all forms of digital violence. The app must NOT be built as an operating system or as separate modules. Instead, all features must exist within ONE unified application with seamless navigation and consistent UI/UX.
+
+I. CORE PURPOSE OF THE APP
+
+AURA must deliver an end-to-end digital safety experience, combining prevention, detection, response, reporting, community protection, emotional support, and analytics—all in one interface.
+
+The app must:
+
+Detect harmful behavior in real-time
+
+Protect privacy through on-device processing
+
+Provide emergency and safety tools
+
+Offer trauma-sensitive support
+
+Empower users with knowledge
+
+Provide insights and data visualizations
+
+Support offline and low-bandwidth environments
+
+Function securely and reliably on African smartphones
+
+II. MAJOR FEATURES (ALL BUILT INTO ONE APP)
+1. Real-Time Digital Abuse Detection (Local AI)
+
+Build an on-device AI engine that detects:
+
+Harassment, hate speech, threats
+
+Manipulation, coercion, and grooming patterns
+
+Image-based abuse and deepfake risks
+
+Harmful or threatening voice notes (transcription + tone analysis)
+
+Must function offline using lightweight models.
+
+2. Safety Guardian Interface
+
+A single dashboard where the user sees:
+
+Recent risks detected
+
+Recommended actions
+
+Safety score
+
+Alerts from suspicious contacts or patterns
+
+A daily “Risk Map” summarizing threats from apps or chats
+
+3. Image & Identity Protection
+
+Include:
+
+Misused-image scanning across public web sources
+
+Photo fingerprinting to detect deepfakes or manipulated content
+
+A user-controlled “Face Lock” watermark for new photos to prevent misuse
+
+4. Evidence Collector & Secure Vault
+
+A built-in vault that safely stores:
+
+Screenshots
+
+Chat logs
+
+Audio clips
+
+Location data
+
+Images
+
+Transcriptions
+
+Metadata
+
+Vault requirements:
+
+End-to-end encryption
+
+Local storage by default
+
+Cloud sync optional
+
+Blockchain or hash-chain timestamping
+
+Export to PDF for authorities
+
+5. Emergency Response System
+
+Include:
+
+Hidden panic button
+
+SMS + WhatsApp fallback alerts
+
+Live location broadcasting
+
+Quick-call trusted contacts
+
+“Silent Help Mode” where the phone looks off but sends alerts
+
+6. Safe Twin – AI Companion
+
+Build an empathetic, trauma-informed AI assistant that can:
+
+Coach users on how to handle online threats
+
+Explain digital safety best practices
+
+Offer emotional support phrases
+
+Provide guidance on reporting abuse
+
+Analyze risky conversations and explain what went wrong
+
+Suggest safer communication patterns
+
+Must speak in calm, non-triggering language.
+
+7. Learning Center (Digital Safety Education Hub)
+
+Include:
+
+Interactive lessons
+
+Gamified safety challenges
+
+Video explainers
+
+Mini-courses (phishing, grooming, deepfakes, privacy, social engineering)
+
+Country-specific legal rights & support resources
+
+Multi-language support: EN, SW, FR, AR, HA, AM.
+
+8. Community Protection Features
+
+Inside the same app, include:
+
+Anonymous reporting of dangerous accounts
+
+Community-driven “Safety Reputation Signals” (no personal data stored)
+
+Verified dangerous-pattern alerts
+
+Ability to identify patterns of repeat offenders across platforms (privacy-preserving)
+
+9. Insights & Visual Analytics
+
+Inside the app, users can see:
+
+A personal threat history
+
+Categories of digital violence they encountered
+
+Geographic patterns of risks (heatmaps)
+
+Time-based charts showing improvements or escalations
+
+Alerts about trending threats affecting women in their region
+
+This replaces separate dashboards with built-in visualization.
+
+10. Offline & Low-Bandwidth Capability
+
+The app must:
+
+Run 80%+ of AI on-device
+
+Defer sync operations to when the user reconnects
+
+Compress data
+
+Keep UI responsive even with weak connectivity
+
+Support SMS interactions for core safety features
+
+11. Accessibility & Inclusivity
+
+Include:
+
+Voice-based navigation
+
+Large-text accessibility
+
+Color-blind friendly palettes
+
+Audio descriptions in multiple languages
+
+12. UI/UX Requirements
+
+Design the app with:
+
+A calming, trauma-informed color palette
+
+Minimal triggers or alarming alerts
+
+Clear information hierarchy
+
+Soft, human-centered microcopy
+
+Smooth transitions and animations
+
+Safe-mode themes for emergency use
+
+III. TECHNICAL REQUIREMENTS
+Mobile Technologies
+
+Flutter or React Native (cross-platform)
+
+On-device AI using: TensorFlow Lite, CoreML, Distil models
+
+Backend
+
+Optional cloud sync (user-controlled)
+
+Node.js, FastAPI, or Django
+
+PostgreSQL or MongoDB
+
+JWT authentication
+
+Security
+
+Zero-knowledge encryption
+
+AES-256 local vault
+
+PBKDF2 key strengthening
+
+Minimal log retention
+
+GDPR + African Data Governance compliance
+
+IV. ADDITIONAL FEATURE REQUIREMENTS
+
+Dark & light themes
+
+Configurable notification sensitivity
+
+Multi-profile setup (e.g., guardian mode for parents)
+
+"Safe Keyboard" that warns users before typing sensitive info
+
+“Threat Simulation Mode” to teach users safely
+
+Backup/restore system with encrypted cloud
+
+Tamper-detection (alerts if the phone is compromised)
+
+App stealth mode (icon disguises itself if needed)
+
+V. FINAL OUTPUT EXPECTATIONS
+
+Generate:
+
+Full app architecture
+
+Detailed feature specifications
+
+Database schema
+
+API routes
+
+Model descriptions
+
+UI mockups
+
+User flows
+
+Security model
+
+Deployment plan
+
+MVP breakdown
+
+Scalability strategy
+
+Build the entire AURA application exactly as described: a single, unified, professional, secure, trauma-informed mobile app with all safety, AI, visualization, emergency, educational, and evidence-handling features integrated into one seamless platform.”
