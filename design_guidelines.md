@@ -2,189 +2,180 @@
 
 ## Design Approach
 
-**Framework**: Trauma-Informed Design System based on Material Design principles, adapted specifically for safety-critical applications serving vulnerable populations. This approach prioritizes psychological safety, accessibility, and trust-building over visual novelty.
+**Framework**: Trauma-Informed Design System based on Material Design principles, specifically adapted for safety-critical applications serving vulnerable African women and girls.
 
 **Core Principles**:
 - Safety First: Every design decision prioritizes user emotional and physical safety
-- Clarity Over Cleverness: Information hierarchy must be immediately scannable
-- Trust Through Transparency: Actions and consequences are always clearly communicated
-- Empowerment Through Control: Users maintain agency over all features and data
+- Clarity Over Cleverness: Scannable information hierarchy
+- Trust Through Transparency: Clear communication of actions and consequences
+- Empowerment Through Control: Users maintain full agency over features and data
+
+## Color System
+
+**Primary Palette**:
+- Primary Purple: #8B5CF6 (Interactive elements, primary actions)
+- Light Purple: #C4B5FD (Backgrounds, hover states)
+- Deep Purple: #6D28D9 (Headers, important text)
+- Primary Teal: #14B8A6 (Success states, progress indicators)
+- Light Teal: #5EEAD4 (Accents, highlights)
+- Deep Teal: #0F766E (Secondary actions)
+
+**Supporting Colors**:
+- Warm Amber: #F59E0B (Warnings, important alerts - never red)
+- Soft Gray: #6B7280 (Secondary text, borders)
+- Light Gray: #F3F4F6 (Backgrounds, cards)
+- White: #FFFFFF (Primary backgrounds)
+
+**Gradients**:
+- Hero Background: Purple to Teal diagonal (from-purple-500 to-teal-400)
+- Card Highlights: Subtle purple to light purple (from-purple-50 to-purple-100)
+- Emergency Button: Amber to orange gentle pulse (from-amber-500 to-orange-500)
+- Success States: Teal gradient (from-teal-400 to-teal-600)
+
+**Application Rules**:
+- Primary actions: Purple fill, white text
+- Secondary actions: Teal outline, teal text
+- Backgrounds: White base with light purple/gray accents
+- Never use harsh reds - use warm amber for warnings
+- Maintain 4.5:1 contrast ratio minimum
 
 ## Typography
 
 **Font System**: Google Fonts via CDN
-- Primary: Inter (400, 500, 600) - exceptional legibility, professional, calming
-- Accent: Poppins (500, 600) - for section headers, warm and approachable
-- Monospace: JetBrains Mono (400) - for evidence vault timestamps and technical data
+- Primary: Inter (400, 500, 600) - Body text, UI elements
+- Accent: Poppins (500, 600) - Headers, emphasis
+- Monospace: JetBrains Mono (400) - Timestamps, technical data
 
 **Type Scale**:
-- Hero/Page Titles: text-4xl md:text-5xl font-semibold
-- Section Headers: text-2xl md:text-3xl font-semibold
-- Card Titles: text-lg md:text-xl font-medium
-- Body: text-base leading-relaxed
-- Helper/Meta: text-sm
-- Labels: text-xs uppercase tracking-wide
+- Hero Titles: text-4xl md:text-5xl font-semibold (Deep Purple)
+- Section Headers: text-2xl md:text-3xl font-semibold (Deep Purple)
+- Card Titles: text-lg md:text-xl font-medium (Primary Purple)
+- Body Text: text-base leading-relaxed (Gray-800)
+- Helper Text: text-sm (Soft Gray)
+- Labels: text-xs uppercase tracking-wide (Soft Gray)
 
-**Critical Typography Rules**:
-- Never use all-caps for warnings or alerts (feels aggressive)
-- Minimum body text size: 16px for trauma-sensitive readability
-- Line height: 1.6-1.8 for comfortable reading
-- Use sentence case for UI copy to feel conversational
+**Critical Rules**:
+- Minimum 16px body text for trauma-sensitive readability
+- Line height: 1.6-1.8
+- Never all-caps for warnings (feels aggressive)
+- Sentence case for conversational UI copy
 
 ## Layout System
 
 **Spacing Primitives**: Tailwind units of 2, 4, 6, 8, 12, 16, 20
 - Component padding: p-4 to p-6
-- Section spacing: py-12 md:py-16
-- Card gaps: gap-4 to gap-6
-- Margin between major sections: mb-12 to mb-20
+- Section spacing: py-12 md:py-16 lg:py-20
+- Card gaps: gap-4 md:gap-6
+- Major section margins: mb-12 md:mb-16
 
 **Grid System**:
-- Dashboard: 12-column responsive grid (grid-cols-1 md:grid-cols-2 lg:grid-cols-3)
-- Main content areas: max-w-7xl mx-auto px-4 md:px-6
-- Forms and focused content: max-w-2xl mx-auto
-- Learning cards: grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6
+- Dashboard Widgets: grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6
+- Main Content: max-w-7xl mx-auto px-4 md:px-6
+- Forms/Focused: max-w-2xl mx-auto
+- Learning Cards: grid-cols-1 md:grid-cols-2 lg:grid-cols-3
 
 **Safe Zones**:
-- Bottom 80px reserved for emergency panic button (fixed position)
-- Top 64px for persistent navigation
-- All interactive elements minimum 44x44px touch targets
+- Bottom 80px: Reserved for emergency panic button (fixed)
+- Top 64px: Persistent navigation
+- All touch targets: Minimum 44x44px
 
 ## Component Library
 
 ### Navigation
-**Primary Navigation**: Soft-edged sidebar (desktop) / bottom tab bar (mobile)
-- Icons: Heroicons (outline for inactive, solid for active states)
-- Labels always visible (no icon-only states that confuse)
-- Active state: gentle background fill, not harsh borders
-- Structure: Dashboard, Vault, Guardian, Learn, Community, Emergency
+**Desktop**: Soft-edged sidebar with purple accent, Heroicons (outline inactive, solid active)
+**Mobile**: Bottom tab bar with teal active indicators
+**Structure**: Dashboard, Vault, Guardian, Learn, Community, Emergency
+**Active State**: Light purple background fill, no harsh borders
 
 ### Cards & Containers
-**Standard Card**: Rounded corners (rounded-xl), subtle elevation (shadow-md), generous padding (p-6)
-- Threat Detection Cards: Include severity indicator (not alarming color), timestamp, action button
-- Evidence Vault Items: Thumbnail preview, metadata, encrypted badge
-- Learning Module Cards: Progress indicator, estimated time, difficulty level
-
-**Dashboard Widgets**:
-- Safety Score Display: Large circular progress indicator with reassuring messaging
-- Recent Alerts Panel: List view with clear visual hierarchy
-- Quick Actions Grid: 2x2 or 3x2 grid of primary feature access points
+**Standard Card**: rounded-xl, shadow-md, p-6, white background with subtle purple border on hover
+- Threat Detection: Severity badge (amber/teal), timestamp, clear action button
+- Evidence Vault: Thumbnail, metadata, "Encrypted" badge with lock icon
+- Learning Modules: Progress bar (teal), time estimate, difficulty indicator
+- Dashboard Widgets: Large purple circular progress, recent alerts list, 2x3 quick actions grid
 
 ### Forms & Inputs
-**All Form Fields**:
-- Labels above inputs (not floating, less cognitive load)
-- Helper text below in muted style
-- Clear validation states with supportive language
-- Generous spacing between fields (mb-6)
-- Optional fields clearly marked
-- Never use red for errors - use amber tones with constructive guidance
+**All Fields**:
+- Labels above (never floating)
+- Helper text below in soft gray
+- Generous spacing (mb-6)
+- Amber validation with constructive guidance
+- Purple focus rings (ring-2 ring-purple-500)
 
-**Evidence Collection Forms**:
-- Multi-step wizard with clear progress indicator
-- Auto-save functionality with visible confirmation
-- Upload zones with drag-and-drop and browse options
-- Preview capability before submission
+**Evidence Collection**: Multi-step wizard with teal progress bar, auto-save with purple confirmation, drag-drop zones
 
 ### Buttons
-**Primary Action**: Rounded-lg, px-6 py-3, font-medium
-- Emergency actions: Slightly larger (py-4) with icon
-- Destructive actions: Require confirmation modal, use amber warning tone
+**Primary**: rounded-lg px-6 py-3 font-medium, purple background, white text
+**Secondary**: Teal outline, teal text, transparent background
+**Emergency**: Larger (py-4), amber-orange gradient, white text with icon
+**On Images**: backdrop-blur-md with semi-transparent purple/teal fill
 
-**Secondary Actions**: Ghost style with subtle border
-**Tertiary**: Text-only with underline on hover
-
-**Button Groupings**: 
-- Stack vertically on mobile (w-full)
-- Horizontal on desktop with gap-4
-- Primary always rightmost in groups
+**Grouping**: Stack mobile (w-full), horizontal desktop (gap-4), primary rightmost
 
 ### Data Visualization
-**Analytics Dashboard**:
-- Line charts for threat timeline (smooth curves, not jagged)
-- Donut charts for threat categories (accessible legends)
-- Heatmaps with gentle gradients (never alarming reds)
-- Bar charts for comparative data
-
-**Chart Library**: Chart.js via CDN with custom trauma-informed color palette
+**Charts** (Chart.js via CDN):
+- Threat Timeline: Smooth purple line charts
+- Category Breakdown: Teal donut charts with accessible legends
+- Comparative Data: Purple/teal bar charts
+- Heatmaps: Purple-to-teal gentle gradients
 - All charts include text summaries for screen readers
-- Data points clearly labeled
-- Interactive tooltips with additional context
 
 ### Modals & Overlays
-**Modal Structure**: 
-- Centered overlay with backdrop blur
-- max-w-lg to max-w-2xl depending on content
-- Clear close button (top-right)
-- Action buttons at bottom-right
-- Never auto-close on critical information
-
-**Emergency Overlays**: Full-screen takeover when panic mode activated
+**Structure**: Centered, backdrop-blur, max-w-lg to max-w-2xl, clear X button (top-right), actions bottom-right
+**Emergency Mode**: Full-screen purple overlay with limited clear options
 
 ### Icons
-**Icon Library**: Heroicons (outline and solid variants)
-- Safety/Guardian: shield-check
-- Vault: lock-closed
-- Emergency: exclamation-circle (not exclamation-triangle)
-- Learning: academic-cap
-- Community: user-group
-- AI Companion: sparkles
-- Consistent sizing: w-5 h-5 for inline, w-6 h-6 for standalone
+**Library**: Heroicons (w-5 h-5 inline, w-6 h-6 standalone)
+- Safety: shield-check, Vault: lock-closed, Emergency: exclamation-circle
+- Learning: academic-cap, Community: user-group, AI: sparkles
+- Consistent purple/teal coloring based on context
 
 ## Images
 
-**Hero Section** (Dashboard Landing):
-- Background: Abstract geometric pattern suggesting safety/protection (interlocking shapes, shield motifs)
-- Overlay: Semi-transparent gradient overlay ensuring text legibility
-- NO photographic imagery in hero to avoid triggering associations
-- Buttons on hero: Background blur (backdrop-blur-md) with semi-transparent fill
+**Hero Section**: 
+- Full-width abstract geometric pattern suggesting protection (interlocking shields, flowing curves)
+- Purple-to-teal diagonal gradient overlay ensuring text legibility
+- Hero buttons with backdrop-blur-md and semi-transparent purple fill
+- NO photographic imagery to avoid triggers
+- Height: min-h-[500px] md:min-h-[600px]
 
 **Feature Sections**:
-- Learning Center: Illustrations of diverse African women in safe, empowered contexts
-- Community Protection: Abstract network diagrams showing connection and support
-- Evidence Vault: Lock/security iconography, no realistic imagery
-- AI Companion: Friendly, abstract AI assistant visualization
+- Learning Center: Illustrations of diverse African women in empowered, safe contexts
+- Community: Abstract network diagrams showing connection (purple/teal nodes)
+- Evidence Vault: Abstract lock/security iconography with purple accents
+- AI Companion: Friendly geometric AI visualization (purple/teal palette)
+- Threat Dashboard: Minimal shield iconography in empty states
 
-**General Image Guidelines**:
-- Avoid any imagery that could be triggering (confrontation, distress, violence)
-- Use illustrations over photography where possible
-- Ensure diverse representation of African women across skin tones and regions
-- All images must have meaningful alt text
+**Guidelines**:
+- Avoid triggering imagery (confrontation, distress, violence)
+- Illustrations over photography
+- Diverse representation across African skin tones and regions
+- All images with meaningful alt text
+- Purple/teal color palette maintained in all illustrations
 
-**Image Placement**:
-- Dashboard: Small illustrative icons in empty states
-- Learning modules: Header illustrations for each course
-- Success states: Celebratory but calm illustrations
-- No large hero image due to trauma-informed approach
+## Special Patterns
 
-## Special Considerations
+### Trauma-Informed Features
+- Safe Mode Toggle: Quick disguise with calendar/weather app appearance
+- Gentle Notifications: Subtle teal slide-ins from top-right
+- Confirmation Steps: All irreversible actions require modal confirmation
+- Clear Exits: Every flow allows exit without data loss
 
-### Trauma-Informed Design Patterns
-- **Safe Mode Toggle**: Discrete icon that quickly disguises app appearance
-- **Gentle Notifications**: Use subtle slide-ins, never jarring pop-ups
-- **Confirmation Steps**: All irreversible actions require explicit confirmation
-- **Escape Routes**: Every flow has a clear exit without losing progress
+### Accessibility
+- High Contrast Mode: User-selectable option
+- Large Text: 1.5x scaling option
+- Full keyboard navigation with visible purple focus indicators
+- Screen reader optimized labels
+- Voice command visual indicators
 
-### Accessibility Features
-- **High Contrast Mode**: User-selectable increased contrast option
-- **Large Text Mode**: 1.5x scale option throughout
-- **Screen Reader Optimization**: All interactive elements properly labeled
-- **Keyboard Navigation**: Full app usable without mouse/touch
-- **Voice Commands**: Visual indicators for voice-activated features
-
-### Multi-Language Support
-- **Text Expansion**: Layouts accommodate 40% text expansion for translations
-- **RTL Support**: Arabic interface fully supports right-to-left reading
-- **Language Switcher**: Persistent access in navigation, flags + native language names
+### Emergency UI
+- Panic Button: Fixed bottom-right, amber-orange pulsing gradient, shadow-xl
+- Quick Exit: Top-left discrete icon, clears sensitive data instantly
+- Emergency Mode: Darkened purple overlay, simplified options
 
 ### Responsive Breakpoints
-- Mobile: 320px - 767px (primary focus)
-- Tablet: 768px - 1023px
-- Desktop: 1024px+
-- Large Desktop: 1440px+
+- Mobile: 320-767px (primary focus, bottom navigation)
+- Tablet: 768-1023px (hybrid layout)
+- Desktop: 1024px+ (sidebar navigation)
 
-### Emergency UI Patterns
-- **Panic Button**: Fixed bottom-right, red-amber gradient, pulsing shadow
-- **Emergency Mode**: Darkened interface, limited options, clear exit instructions
-- **Quick Exit**: Persistent escape route that clears sensitive data from view
-
-This design system creates a sanctuary of digital safety—professional yet compassionate, powerful yet approachable, technically sophisticated yet human-centered. Every element reinforces trust, clarity, and user empowerment.
+This system creates a digital sanctuary—calming purple/teal aesthetics combined with trauma-informed patterns that prioritize safety, clarity, and user empowerment at every interaction.
