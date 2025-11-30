@@ -37,6 +37,7 @@ ThreatAnalysis analyzeMessage(String message) {
     context: UserContext.current
   );
 }
+```
 
 On-device AI models scan messages across platforms
 
