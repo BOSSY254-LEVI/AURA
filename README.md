@@ -39,24 +39,25 @@ ThreatAnalysis analyzeMessage(String message) {
 }
 ```
 
-On-device AI models scan messages across platforms
 
-Offline capability through optimized ML models
+- On-device AI models scan messages across platforms
 
-Multi-language support for African dialects
+- Offline capability through optimized ML models
 
-Discreet safety alerts with trauma-informed design
+- Multi-language support for African dialects
 
-🖼️ Image Protection & Deepfake Detection
-Proactive monitoring for misused photos
+- Discreet safety alerts with trauma-informed design
 
-Secure watermarking and facial protection
+## 🖼️ Image Protection & Deepfake Detection
+- Proactive monitoring for misused photos
 
-Deepfake identification algorithms
+- Secure watermarking and facial protection
 
-Take-down assistance integration
+- Deepfake identification algorithms
 
-🆘 Emergency Safety System
+- Take-down assistance integration
+
+## 🆘 Emergency Safety System
 dart
 class EmergencySystem {
   void triggerSOS() {
@@ -65,21 +66,23 @@ class EmergencySystem {
     EvidenceVault.secureCurrentSession();
   }
 }
-One-tap panic button with silent activation
 
-Real-time location sharing with trusted contacts
+- One-tap panic button with silent activation
 
-Local resource integration (hotlines, shelters, legal aid)
+- Real-time location sharing with trusted contacts
 
-Discreet emergency modes
+- Local resource integration (hotlines, shelters, legal aid)
 
-🔒 Secure Evidence Vault
+- Discreet emergency modes
+
+## 🔒 Secure Evidence Vault
 text
 📁 Evidence Vault Structure
 ├── 📄 Chat Logs (encrypted)
 ├── 🖼️ Screenshots (timestamped)
 ├── 🎤 Audio Recordings (verified)
 └── 📍 Location Data (secured)
+
 Zero-knowledge encryption architecture
 
 Blockchain integrity verification
@@ -88,7 +91,7 @@ Export-ready evidence packs for legal support
 
 Automated timestamping and verification
 
-🤖 AURA Safe Twin AI Assistant
+# 🤖 AURA Safe Twin AI Assistant
 python
 class SafeTwinAssistant:
     def provide_guidance(self, threat_level, user_context):
@@ -105,7 +108,7 @@ Emotional support with psychological safety
 
 Personalized safety recommendations
 
-📚 Learning & Awareness Hub
+## 📚 Learning & Awareness Hub
 Micro-lessons on digital safety and rights
 
 Cultural relevance for African contexts
@@ -114,7 +117,7 @@ Offline accessibility for low-connectivity areas
 
 Interactive quizzes and scenario training
 
-👥 Community Safety Network
+## 👥 Community Safety Network
 Anonymous reporting system
 
 User reputation scoring
@@ -123,20 +126,28 @@ Regional threat heatmaps (anonymized)
 
 NGO and support service integration
 
-🏗️ Technical Architecture
+## 🏗️ Technical Architecture
 System Overview
 
+ graph TB
+    A[User Devices] --> B[On-Device AI]
+    B --> C[Threat Detection]
+    B --> D[Image Analysis]
+    B --> E[Voice Processing]
+    
+    C --> F[Local Alerts]
+    D --> F
+    E --> F
+    
+    F --> G[Secure Vault]
+    G --> H[Encrypted Sync]
+    H --> I[Cloud Backup]
+    
+    I --> J[NGO Dashboards]
+    I --> K[Analytics Engine]
 
 
-
-
-
-
-
-
-
-
-Tech Stack
+## Tech Stack
 Layer	Technology	Purpose
 Frontend	Flutter	Cross-platform mobile development
 AI/ML	TensorFlow Lite, CoreML	On-device intelligence
@@ -144,7 +155,8 @@ Backend	Node.js, FastAPI	Microservices architecture
 Database	PostgreSQL, MongoDB	Data persistence
 Security	AES-256, E2EE	Privacy protection
 Storage	IPFS, S3	Evidence management
-🔐 Privacy & Security
+
+## 🔐 Privacy & Security
 Our Principles
 ✅ On-device processing - Your data stays with you
 
