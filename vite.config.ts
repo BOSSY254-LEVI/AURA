@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [
     react(),
   ],
+  
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -18,6 +19,13 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
   },
+  
+  resolve: {
+  alias: {
+    "@": path.resolve(__dirname, "./src"),
+  },
+},
+
   server: {
     fs: {
       strict: true,
@@ -25,3 +33,4 @@ export default defineConfig({
     },
   },
 });
+

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
-import { type Language, languages } from "@/lib/i18n";
+import { type Language, languages } from "../lib/i18n";
 
 interface LanguageContextType {
   language: Language;

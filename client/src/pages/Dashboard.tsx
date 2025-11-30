@@ -200,7 +200,7 @@ export default function Dashboard() {
             {t("dashboard")}
           </h1>
           <p className="text-muted-foreground mt-1">
-            Welcome back{user?.firstName ? `, ${user.firstName}` : ''}
+            Welcome back{user?.name ? `, ${user.name}` : ''}
           </p>
         </div>
       </div>

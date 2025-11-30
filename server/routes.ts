@@ -1,27 +1,27 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { setupAuth, isAuthenticated, hashPassword, generateToken } from "./auth";
+import { setupAuth, isAuthenticated, hashPassword, generateToken, verifyToken } from "./auth";
 import { analyzeMessageForThreats, getChatResponse } from "./openai";
-import { 
-  insertThreatSchema, 
-  insertEvidenceItemSchema, 
+import {
+  insertThreatSchema,
+  insertEvidenceItemSchema,
   insertEmergencyContactSchema,
   insertCommunityReportSchema,
   insertLearningProgressSchema,
 } from "@shared/schema";
 import { z } from "zod";
 import crypto from "crypto";
+import bcrypt from "bcrypt";
 
-export async function registerRoutes(
-  httpServer: Server,
-  app: Express
-): Promise<Server> {
+export async function registerRoutes(app: Express): Promise<Server> {
+  const httpServer = createServer(app);
+  
   // Auth middleware
   await setupAuth(app);
 
   // Auth routes
-  app.post('/api/auth/register', async (req: any, res) => {
+  app.post('/api/auth/register', async (req, res) => {
     try {
       const { email, password, name } = req.body;
 
@@ -39,8 +39,9 @@ export async function registerRoutes(
       const passwordHash = await hashPassword(password);
 
       // Create user
-      const user = await storage.upsertUser({
+      const user = await storage.createUser({
         email,
+        passwordHash,
         firstName: name.split(' ')[0],
         lastName: name.split(' ').slice(1).join(' ') || '',
         preferredLanguage: 'en',
@@ -48,16 +49,26 @@ export async function registerRoutes(
       });
 
       // Generate token
-      const token = generateToken({ id: user.id, email: user.email, name });
+      const token = generateToken({ 
+        id: user.id, 
+        email: user.email, 
+        name: `${user.firstName} ${user.lastName}`.trim() 
+      });
 
-      res.json({ user, token });
+      // Return user without password hash
+      const { passwordHash: _, ...userWithoutPassword } = user;
+      
+      res.json({ 
+        user: userWithoutPassword, 
+        token 
+      });
     } catch (error) {
       console.error("Error registering user:", error);
       res.status(500).json({ message: "Failed to register user" });
     }
   });
 
-  app.post('/api/auth/login', async (req: any, res) => {
+  app.post('/api/auth/login', async (req, res) => {
     try {
       const { email, password } = req.body;
 
@@ -71,26 +82,43 @@ export async function registerRoutes(
       }
 
       // Check password
-      const bcrypt = await import('bcrypt');
       const isValidPassword = await bcrypt.compare(password, user.passwordHash);
       if (!isValidPassword) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
 
-      const token = generateToken({ id: user.id, email: user.email, name: user.firstName });
+      const token = generateToken({ 
+        id: user.id, 
+        email: user.email, 
+        name: `${user.firstName} ${user.lastName}`.trim() 
+      });
 
-      res.json({ user, token });
+      // Return user without password hash
+      const { passwordHash: _, ...userWithoutPassword } = user;
+
+      res.json({ 
+        user: userWithoutPassword, 
+        token 
+      });
     } catch (error) {
       console.error("Error logging in:", error);
       res.status(500).json({ message: "Failed to login" });
     }
   });
 
-  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
+  app.get('/api/auth/user', isAuthenticated, async (req, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user!.claims.sub;
       const user = await storage.getUser(userId);
-      res.json(user);
+      
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      // Return user without password hash
+      const { passwordHash, ...userWithoutPassword } = user;
+      
+      res.json(userWithoutPassword);
     } catch (error) {
       console.error("Error fetching user:", error);
       res.status(500).json({ message: "Failed to fetch user" });
@@ -98,9 +126,9 @@ export async function registerRoutes(
   });
 
   // Threat routes
-  app.get("/api/threats", isAuthenticated, async (req: any, res) => {
+  app.get("/api/threats", isAuthenticated, async (req, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user!.claims.sub;
       const threats = await storage.getThreats(userId);
       res.json(threats);
     } catch (error) {
@@ -109,9 +137,9 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/threats/analyze", isAuthenticated, async (req: any, res) => {
+  app.post("/api/threats/analyze", isAuthenticated, async (req, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user!.claims.sub;
       const { message, source } = req.body;
       
       if (!message) {
@@ -141,7 +169,7 @@ export async function registerRoutes(
     }
   });
 
-  app.patch("/api/threats/:id", isAuthenticated, async (req: any, res) => {
+  app.patch("/api/threats/:id", isAuthenticated, async (req, res) => {
     try {
       const { id } = req.params;
       const threat = await storage.updateThreat(id, req.body);
@@ -153,9 +181,9 @@ export async function registerRoutes(
   });
 
   // Evidence vault routes
-  app.get("/api/evidence", isAuthenticated, async (req: any, res) => {
+  app.get("/api/evidence", isAuthenticated, async (req, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user!.claims.sub;
       const items = await storage.getEvidenceItems(userId);
       res.json(items);
     } catch (error) {
@@ -164,9 +192,9 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/evidence", isAuthenticated, async (req: any, res) => {
+  app.post("/api/evidence", isAuthenticated, async (req, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user!.claims.sub;
       const validatedData = insertEvidenceItemSchema.parse({
         ...req.body,
         userId,
@@ -194,7 +222,7 @@ export async function registerRoutes(
     }
   });
 
-  app.delete("/api/evidence/:id", isAuthenticated, async (req: any, res) => {
+  app.delete("/api/evidence/:id", isAuthenticated, async (req, res) => {
     try {
       const { id } = req.params;
       await storage.deleteEvidenceItem(id);
@@ -206,9 +234,9 @@ export async function registerRoutes(
   });
 
   // Emergency contact routes
-  app.get("/api/emergency-contacts", isAuthenticated, async (req: any, res) => {
+  app.get("/api/emergency-contacts", isAuthenticated, async (req, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user!.claims.sub;
       const contacts = await storage.getEmergencyContacts(userId);
       res.json(contacts);
     } catch (error) {
@@ -217,9 +245,9 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/emergency-contacts", isAuthenticated, async (req: any, res) => {
+  app.post("/api/emergency-contacts", isAuthenticated, async (req, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user!.claims.sub;
       const validatedData = insertEmergencyContactSchema.parse({
         ...req.body,
         userId,
@@ -235,7 +263,7 @@ export async function registerRoutes(
     }
   });
 
-  app.delete("/api/emergency-contacts/:id", isAuthenticated, async (req: any, res) => {
+  app.delete("/api/emergency-contacts/:id", isAuthenticated, async (req, res) => {
     try {
       const { id } = req.params;
       await storage.deleteEmergencyContact(id);
@@ -247,7 +275,7 @@ export async function registerRoutes(
   });
 
   // Community reports routes
-  app.get("/api/community/reports", isAuthenticated, async (req: any, res) => {
+  app.get("/api/community/reports", isAuthenticated, async (req, res) => {
     try {
       const reports = await storage.getCommunityReports();
       res.json(reports);
@@ -257,10 +285,10 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/community/reports", isAuthenticated, async (req: any, res) => {
+  app.post("/api/community/reports", isAuthenticated, async (req, res) => {
     try {
       // Generate anonymous reporter hash
-      const userId = req.user.claims.sub;
+      const userId = req.user!.claims.sub;
       const reporterHash = crypto.createHash('sha256').update(userId + Date.now()).digest('hex').slice(0, 16);
       
       const validatedData = insertCommunityReportSchema.parse({
@@ -281,9 +309,9 @@ export async function registerRoutes(
   });
 
   // Learning progress routes
-  app.get("/api/learning/progress", isAuthenticated, async (req: any, res) => {
+  app.get("/api/learning/progress", isAuthenticated, async (req, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user!.claims.sub;
       const progress = await storage.getLearningProgress(userId);
       res.json(progress);
     } catch (error) {
@@ -292,9 +320,9 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/learning/complete", isAuthenticated, async (req: any, res) => {
+  app.post("/api/learning/complete", isAuthenticated, async (req, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user!.claims.sub;
       const { moduleId, lessonId } = req.body;
       
       if (!moduleId || !lessonId) {
@@ -317,9 +345,9 @@ export async function registerRoutes(
   });
 
   // Safe Twin companion chat routes
-  app.get("/api/companion/chat", isAuthenticated, async (req: any, res) => {
+  app.get("/api/companion/chat", isAuthenticated, async (req, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user!.claims.sub;
       const chat = await storage.getCompanionChat(userId);
       res.json(chat || { messages: [] });
     } catch (error) {
@@ -328,9 +356,9 @@ export async function registerRoutes(
     }
   });
 
-  app.post("/api/companion/chat", isAuthenticated, async (req: any, res) => {
+  app.post("/api/companion/chat", isAuthenticated, async (req, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user!.claims.sub;
       const { message } = req.body;
       
       if (!message) {
@@ -376,9 +404,9 @@ export async function registerRoutes(
   });
 
   // Safety insights routes
-  app.get("/api/insights", isAuthenticated, async (req: any, res) => {
+  app.get("/api/insights", isAuthenticated, async (req, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user!.claims.sub;
       const insights = await storage.getSafetyInsights(userId);
       res.json(insights);
     } catch (error) {
