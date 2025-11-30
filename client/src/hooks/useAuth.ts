@@ -4,7 +4,9 @@ import { persist } from "zustand/middleware";
 interface User {
   id: string;
   email: string;
-  name?: string;
+  firstName?: string;
+  lastName?: string;
+  profileImageUrl?: string;
   preferredLanguage: string;
   safetyScore: number;
 }
