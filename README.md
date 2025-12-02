@@ -1,13 +1,9 @@
 ## 🛡️ AURA – Autonomous Unified Response Assistant
 The All-in-One Digital Safety Platform for Women & Girls Across Africa
 
-https://via.placeholder.com/1200x400/4F46E5/FFFFFF?text=AURA+Digital+Safety+Platform
+![AURA Banner](https://via.placeholder.com/1200x400/4F46E5/FFFFFF?text=AURA+Digital+Safety+Platform)
 
-https://img.shields.io/badge/License-MIT-blue.svg
-https://img.shields.io/badge/Platform-Flutter-02569B?logo=flutter
-https://img.shields.io/badge/PRs-welcome-brightgreen.svg
-https://img.shields.io/twitter/follow/aura_safety?style=social
-https://img.shields.io/github/stars/yourusername/aura-app?style=social
+![License](https://img.shields.io/badge/License-MIT-blue.svg) ![Platform](https://img.shields.io/badge/Platform-Flutter-02569B?logo=flutter) ![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) ![Twitter](https://img.shields.io/twitter/follow/aura_safety?style=social) ![GitHub stars](https://img.shields.io/github/stars/yourusername/aura-app?style=social)
 
 AURA is a next-generation mobile application designed to protect, empower, and educate women and girls facing digital violence. It combines on-device AI, real-time threat detection, privacy-first engineering, and trauma-informed design into one unified platform that works even in low-bandwidth environments.
 
@@ -36,6 +32,8 @@ AURA is a next-generation mobile application designed to protect, empower, and e
 
 🙏 Acknowledgments
 
+---
+
 ## 🌟 Why AURA?
 Digital violence against women in Africa has reached alarming levels:
 
@@ -51,7 +49,7 @@ AURA addresses these challenges with intelligent, accessible, and compassionate 
 
 ## ✨ Features
 🛡️ Real-Time Threat Detection
-dart
+```dart
 // On-device AI scanning
 ThreatAnalysis analyzeMessage(String message) {
   return AIScanner.detectThreats(
@@ -59,6 +57,7 @@ ThreatAnalysis analyzeMessage(String message) {
     context: UserContext.current
   );
 }
+```
 Key Capabilities:
 
 On-device AI models scan messages across platforms
@@ -79,7 +78,7 @@ Deepfake identification algorithms
 Take-down assistance integration
 
 🆘 Emergency Safety System
-dart
+```dart
 class EmergencySystem {
   void triggerSOS() {
     Location.shareWithTrustedContacts();
@@ -87,6 +86,7 @@ class EmergencySystem {
     EvidenceVault.secureCurrentSession();
   }
 }
+```
 Emergency Features:
 
 One-tap panic button with silent activation
@@ -98,12 +98,13 @@ Local resource integration (hotlines, shelters, legal aid)
 Discreet emergency modes
 
 🔒 Secure Evidence Vault
-text
+```text
 📁 Evidence Vault Structure
 ├── 📄 Chat Logs (encrypted)
 ├── 🖼️ Screenshots (timestamped)
 ├── 🎤 Audio Recordings (verified)
 └── 📍 Location Data (secured)
+```
 Security Features:
 
 Zero-knowledge encryption architecture
@@ -115,7 +116,7 @@ Export-ready evidence packs for legal support
 Automated timestamping and verification
 
 🤖 AURA Safe Twin AI Assistant
-python
+```python
 class SafeTwinAssistant:
     def provide_guidance(self, threat_level, user_context):
         return TraumaInformedResponse.generate(
@@ -123,6 +124,7 @@ class SafeTwinAssistant:
             cultural_context=user_context.region,
             emotional_state=user_context.mood
         )
+```
 AI Capabilities:
 
 Voice & chat-based AI safety coach
@@ -153,6 +155,7 @@ NGO and support service integration
 
 🏗️ Architecture
 System Overview
+```mermaid
 graph TB
     A[User Devices] --> B[On-Device AI]
     B --> C[Threat Detection]
@@ -169,16 +172,17 @@ graph TB
     
     I --> J[NGO Dashboards]
     I --> K[Analytics Engine]
-
+```
 
 Tech Stack
-Layer	Technology	Purpose
-Frontend	Flutter	Cross-platform mobile development
-AI/ML	TensorFlow Lite, CoreML	On-device intelligence
-Backend	Node.js, FastAPI	Microservices architecture
-Database	PostgreSQL, MongoDB	Data persistence
-Security	AES-256, E2EE	Privacy protection
-Storage	IPFS, S3	Evidence management
+| Layer | Technology | Purpose |
+|-------|------------|---------|
+| Frontend | Flutter | Cross-platform mobile development |
+| AI/ML | TensorFlow Lite, CoreML | On-device intelligence |
+| Backend | Node.js, FastAPI | Microservices architecture |
+| Database | PostgreSQL, MongoDB | Data persistence |
+| Security | AES-256, E2EE | Privacy protection |
+| Storage | IPFS, S3 | Evidence management |
 🔐 Security
 Our Principles
 ✅ On-device processing - Your data stays with you
@@ -192,7 +196,7 @@ Our Principles
 ✅ Offline-first design - Works without internet connection
 
 Security Implementation
-yaml
+```yaml
 encryption:
   messages: "AES-256-GCM"
   storage: "Zero-knowledge proofs"
@@ -204,6 +208,7 @@ privacy:
   analytics: "Differential privacy"
   third_parties: "Strictly limited"
   compliance: "GDPR, POPIA ready"
+```
 🚀 Getting Started
 Prerequisites
 Flutter SDK 3.0+
@@ -215,7 +220,7 @@ Node.js 16+ (for backend)
 Python 3.8+ (for AI models)
 
 Installation
-bash
+```bash
 # Clone the repository
 git clone https://github.com/yourusername/aura-app.git
 cd aura-app
@@ -229,8 +234,9 @@ cp .env.example .env
 
 # Run the application
 flutter run
+```
 Development Setup
-bash
+```bash
 # For backend development
 cd server
 npm install
@@ -240,8 +246,9 @@ npm run dev
 cd client
 flutter pub get
 flutter run
+```
 Building for Production
-bash
+```bash
 # Android APK
 flutter build apk --release
 
@@ -250,6 +257,7 @@ flutter build ios --release
 
 # Web Deployment
 flutter build web --release
+```
 🤝 Contributing
 We believe in building AURA together! Here's how you can help:
 
@@ -276,7 +284,7 @@ Non-Code Contributions
 📢 Community awareness
 
 Development Guidelines
-dart
+```dart
 // Follow our code style
 class AuraFeature {
   // Use descriptive names
@@ -288,12 +296,14 @@ class AuraFeature {
     // Implement with privacy-first approach
   }
 }
+```
 ## 📊 Impact Metrics
-Metric	Target	Current
-Women Protected	1 Million	10,000+
-Threats Detected	500K/month	15,000/month
-Emergency Responses	50K/year	1,200/year
-Countries Served	15 African nations	3 nations
+| Metric | Target | Current |
+|--------|--------|---------|
+| Women Protected | 1 Million | 10,000+ |
+| Threats Detected | 500K/month | 15,000/month |
+| Emergency Responses | 50K/year | 1,200/year |
+| Countries Served | 15 African nations | 3 nations |
 🗺️ Roadmap
 Phase 1: MVP (Current)
 ✅ Core threat detection
@@ -334,17 +344,18 @@ Phase 4: Expansion (2025)
 ## 👥 Partners
 We're proud to work with organizations committed to digital safety:
 
-Organization	Contribution
-Women's Tech Hub Africa	Community Outreach
-Digital Rights Foundation	Policy Guidance
-Safe Online Initiative	Funding & Research
-Local NGOs	Ground Implementation
+| Organization | Contribution |
+|--------------|--------------|
+| Women's Tech Hub Africa | Community Outreach |
+| Digital Rights Foundation | Policy Guidance |
+| Safe Online Initiative | Funding & Research |
+| Local NGOs | Ground Implementation |
 Interested in partnering? Contact us
 
 ## 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-text
+```text
 MIT License
 
 Copyright (c) 2024 AURA Digital Safety Platform
@@ -366,6 +377,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```
 
 ## 📬 Contact & Support
 Project Leadership
@@ -406,6 +418,6 @@ Every contributor who believes in a safer digital future
 <div align="center">
 💜 Join us in building a safer digital world for African women and girls
 ⭐ Star this repository if you support our mission!
-https://api.star-history.com/svg?repos=yourusername/aura-app&type=Date
+<img src="https://api.star-history.com/svg?repos=yourusername/aura-app&type=Date" alt="Star History Chart">
 
 </div>
