@@ -7,7 +7,6 @@ import { LanguageProvider } from './context/LanguageContext';
 import AppRouter from './Router';
 import { useAuth } from './hooks/useAuth';
 
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -20,15 +19,15 @@ const queryClient = new QueryClient({
 
 class SimpleErrorBoundary extends React.Component<
   { children: React.ReactNode },
-  { hasError: boolean }
+  { hasError: boolean; error?: Error }
 > {
   constructor(props: { children: React.ReactNode }) {
     super(props);
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError() {
-    return { hasError: true };
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
@@ -45,6 +44,14 @@ class SimpleErrorBoundary extends React.Component<
             </div>
             <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-3">An Unexpected Error Occurred</h2>
             <p className="text-gray-600 dark:text-gray-300 mb-6">We're sorry for the inconvenience. Please try reloading the page.</p>
+            {this.state.error && (
+              <details className="text-sm text-gray-500 dark:text-gray-400 mb-4 text-left">
+                <summary className="cursor-pointer mb-2">Error details</summary>
+                <pre className="mt-2 whitespace-pre-wrap text-xs bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                  {this.state.error.message}
+                </pre>
+              </details>
+            )}
             <button
               onClick={() => window.location.reload()}
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 ease-in-out shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
@@ -60,16 +67,19 @@ class SimpleErrorBoundary extends React.Component<
 }
 
 function App() {
+  // Fix the useAuth hook usage - it should be called inside a component
+  const { checkAuth } = useAuth();
+
   useEffect(() => {
-    useAuth.getState().checkAuth();
-  }, []);
+    checkAuth();
+  }, [checkAuth]);
 
   return (
     <SimpleErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
           <LanguageProvider>
-            <div className="App">
+            <div className="App min-h-screen bg-background text-foreground">
               <AppRouter />
               <Toaster 
                 position="top-right"
@@ -80,6 +90,20 @@ function App() {
                     color: '#1f2937',
                     border: '1px solid #e5e7eb',
                     boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+                  },
+                  success: {
+                    duration: 3000,
+                    iconTheme: {
+                      primary: '#10B981',
+                      secondary: '#fff',
+                    },
+                  },
+                  error: {
+                    duration: 7000,
+                    iconTheme: {
+                      primary: '#EF4444',
+                      secondary: '#fff',
+                    },
                   },
                 }}
               />
