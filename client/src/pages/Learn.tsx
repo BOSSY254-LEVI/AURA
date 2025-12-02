@@ -17,7 +17,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTranslation } from "@/lib/i18n";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import type { LearningProgress } from "@shared/schema";
+import type { LearningProgress } from "server/shared/schema";
 import {
   BookOpen,
   Play,

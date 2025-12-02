@@ -23,7 +23,7 @@ import {
   type InsertCompanionChat,
   type SafetyInsight,
   type InsertSafetyInsight,
-} from "@shared/schema";
+} from "server/shared/schema";
 import { db } from "./db";
 import { eq, desc, and } from "drizzle-orm";
 

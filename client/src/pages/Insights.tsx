@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTranslation } from "@/lib/i18n";
-import type { Threat, SafetyInsight } from "@shared/schema";
+import type { Threat, SafetyInsight } from "server/shared/schema";
 import {
   BarChart,
   Bar,

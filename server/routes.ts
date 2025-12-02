@@ -9,7 +9,7 @@ import {
   insertEmergencyContactSchema,
   insertCommunityReportSchema,
   insertLearningProgressSchema,
-} from "@shared/schema";
+} from "server/shared/schema";
 import { z } from "zod";
 import crypto from "crypto";
 import bcrypt from "bcrypt";

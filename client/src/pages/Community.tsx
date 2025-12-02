@@ -26,7 +26,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTranslation } from "@/lib/i18n";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import type { CommunityReport } from "@shared/schema";
+import type { CommunityReport } from "server/shared/schema";
 import {
   Users,
   AlertTriangle,

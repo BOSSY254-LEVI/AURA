@@ -25,7 +25,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTranslation } from "@/lib/i18n";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import type { EvidenceItem } from "@shared/schema";
+import type { EvidenceItem } from "server/shared/schema";
 import {
   Lock,
   Plus,

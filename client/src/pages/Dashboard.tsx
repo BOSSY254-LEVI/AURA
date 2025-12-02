@@ -7,7 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTranslation } from "@/lib/i18n";
 import { useAuth } from "@/hooks/useAuth";
-import type { Threat } from "@shared/schema";
+import type { Threat } from "server/shared/schema";
 import { 
   Shield, 
   MessageSquareWarning, 
