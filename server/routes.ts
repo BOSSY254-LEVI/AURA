@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { setupAuth, isAuthenticated, hashPassword, generateToken, verifyToken } from "./auth";
+import { setupAuth, isAuthenticated, hashPassword, generateToken, verifyToken } from "./middleware/auth";
 import { analyzeMessageForThreats, getChatResponse } from "./openai";
 import {
   insertThreatSchema,

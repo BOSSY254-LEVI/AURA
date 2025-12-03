@@ -1,4 +1,4 @@
-import { storage } from "./storage";
+import { storage } from "../storage";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
