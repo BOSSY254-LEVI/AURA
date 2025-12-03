@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import { testConnection } from './database';
-import { registerRoutes } from './routes';
-import { serveStatic } from './static';
+import { testConnection } from './config/database';
+import { registerRoutes } from '../routes';
+import { serveStatic } from '../static';
 import { createServer } from 'http';
 import type { Request, Response, NextFunction } from 'express';
 
@@ -91,7 +91,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   if (process.env.NODE_ENV === "production") {
     serveStatic(app);
   } else {
-    const { setupVite } = await import('./vite');
+    const { setupVite } = await import('../vite');
     await setupVite(httpServer, app);
   }
 
