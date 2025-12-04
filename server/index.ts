@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import { testConnection } from './config/database';
-import { registerRoutes } from '../routes';
-import { serveStatic } from '../static';
+import { testConnection } from './src/config/database';
+import { registerRoutes } from './src/routes/index';
+import { serveStatic } from './src/utils/static';
 import { createServer } from 'http';
 import type { Request, Response, NextFunction } from 'express';
 
@@ -14,7 +14,7 @@ declare module "http" {
   }
 }
 
-app.use(cors()); // Added missing CORS middleware
+app.use(cors());
 
 app.use(
   express.json({
@@ -91,7 +91,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   if (process.env.NODE_ENV === "production") {
     serveStatic(app);
   } else {
-    const { setupVite } = await import('../vite');
+    const { setupVite } = await import('./src/utils/vite');
     await setupVite(httpServer, app);
   }
 

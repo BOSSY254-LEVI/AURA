@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/context/LanguageContext";
@@ -76,10 +77,10 @@ export default function Landing() {
           </div>
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="sm" className="gap-2" asChild>
-              <a href="/api/login" data-testid="button-login-header">
+              <Link to="/login" data-testid="button-login-header">
                 <Globe className="w-4 h-4" />
                 <span className="hidden sm:inline">{t("login")}</span>
-              </a>
+              </Link>
             </Button>
           </div>
         </div>
@@ -108,15 +109,15 @@ export default function Landing() {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="w-full sm:w-auto gap-2 text-base px-8 py-6 bg-gradient-to-r from-purple-600 to-purple-700 border-purple-border"
                 asChild
               >
-                <a href="/api/login" data-testid="button-get-started">
+                <Link to="/register" data-testid="button-get-started">
                   Get Started Free
                   <ChevronRight className="w-5 h-5" />
-                </a>
+                </Link>
               </Button>
               <Button 
                 variant="outline" 

@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { AlertTriangle } from 'lucide-react';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
-import AppRouter from './Router';
+import AppRouter from './Router.tsx';
 import { useAuth } from './hooks/useAuth';
 
 const queryClient = new QueryClient({
